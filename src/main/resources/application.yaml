@@ -1,0 +1,33 @@
+server:
+  port: 8080
+
+
+spring:
+  application:
+    name: Delivery
+
+  profiles:
+    active: api
+
+  thymeleaf:
+    cache: false
+  data:
+    rest:
+      base-path: data-api
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: admin
+    password: 1337
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    database: postgresql
+
+logging:
+  level:
+    org.springframework.boot.autoconfigure:
+      ERROR
+
+
+

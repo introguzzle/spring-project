@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>App</title>
+</head>
+
+<body>
+<h1>Welcome to...</h1>
+<a th:href="@{/design}">
+    <img th:src="@{/images/icon.png}" alt="Icon">
+</a>
+
+<a th:href="@{/h2-console/}">
+    <input type="submit" value="H2-CONSOLE DATABASE">
+</a>
+
+<form method="POST" th:action="@{/logout}">
+    <input type="submit" value="Logout">
+</form>
+
+<div th:if="${#authorization.expression('isAuthenticated')}">
+    <p> Logged in as:
+        <span th:text="${#authorization.getAuthentication().getAuthorities()}"></span><br>
+        <span th:text="${#authorization.getAuthentication().getDetails()}"></span><br>
+        <span th:text="${#authorization.getAuthentication().getName()}"></span><br>
+        <span th:text="${#authorization.getAuthentication().getPrincipal()}"></span><br>
+    </p>
+</div>
+
+</body>
+</html>

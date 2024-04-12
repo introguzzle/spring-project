@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Taco Cloud</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+<body>
+<!--/*@thymesVar id="tacoOrder" type="ru.delivery.entity.TacoOrder"*/-->
+<form method="POST" th:action="@{/orders}" th:object="${tacoOrder}">
+    <h1>Order your taco creations!</h1>
+    <img th:src="@{/images/icon.png}" alt="Icon"/>
+
+    <h3>Your tacos in this order:</h3>
+    <a th:href="@{/design}" id="another">Design another taco</a><br/>
+
+    <ul>
+        <li th:each="taco : ${tacoOrder.tacos}">
+            <span th:text="${taco.name}">taco name</span></li>
+    </ul>
+
+    <h3>Deliver my taco masterpieces to...</h3>
+    <label th:field="*{deliveryName}">Name: </label>
+    <label>
+        <input type="text" th:field="*{deliveryName}"/>
+    </label>
+    <br/>
+
+    <label th:field="*{deliveryStreet}">Street address: </label>
+    <label>
+        <input type="text" th:field="*{deliveryStreet}"/>
+    </label>
+    <br/>
+
+    <label th:field="*{deliveryCity}">City: </label>
+    <label>
+        <input type="text" th:field="*{deliveryCity}"/>
+    </label>
+    <br/>
+
+    <label th:field="*{deliveryZipCode}">Zip code: </label>
+    <label>
+        <input type="text" th:field="*{deliveryZipCode}"/>
+    </label>
+    <br/>
+
+    <h3>Here’s how I’ll pay...</h3>
+    <label th:field="*{ccNumber}">Credit Card #: </label>
+    <label>
+        <input type="text" th:field="*{ccNumber}"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('ccNumber')}"
+              th:errors="*{ccNumber}">
+        </span>
+    </label>
+    <br/>
+
+    <label th:field="*{ccExpiration}">Expiration: </label>
+    <label>
+        <input type="text" th:field="*{ccExpiration}"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('ccExpiration')}"
+              th:errors="*{ccExpiration}">
+        </span>
+    </label>
+    <br/>
+
+    <label th:field="*{ccCVV}">CVV: </label>
+    <label>
+        <input type="text" th:field="*{ccCVV}"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('ccCVV')}"
+              th:errors="*{ccCVV}">
+        </span>
+    </label>
+    <br/>
+
+    <input type="submit" value="Submit Order"/>
+
+</form>
+</body>
+</html>

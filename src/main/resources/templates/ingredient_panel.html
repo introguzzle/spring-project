@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ingredient panel</title>
+</head>
+<body>
+
+<form method="post" th:object="${ingredient}">
+    <label th:field="*{id}">
+        <input type="text" name="id">
+    </label>
+    <br>
+
+    <label th:field="*{name}">
+        <input type="text" name="name">
+    </label>
+    <br>
+
+    <label th:field="*{type}">
+        <input type="text" name="type">
+    </label>
+
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>
